@@ -73,6 +73,7 @@ public class ExcelToDatabaseImporter {
         columnNamesToUpdate.add("workstation_capacity_min");
         columnNamesToUpdate.add("workstation_capacity_max");
         columnNamesToUpdate.add("equipment_quantity");
+        columnNamesToUpdate.add("workstation_no_outsource");
 
         // If you want to remove '.0' chars from cells, run this method
         updateColumnValues(connection, dbTableName, columnNamesToUpdate);
