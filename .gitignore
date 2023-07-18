@@ -1,5 +1,4 @@
 /.idea/
 /target/
 *.iml
-/configuration.properties/
-
+/configuration.properties

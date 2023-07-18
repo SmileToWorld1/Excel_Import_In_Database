@@ -15,7 +15,6 @@ public class WorkstationProcessor {
             String password = ConfigurationReader.get("db.password.rodex");
             int plantId = 68;
 
-
             try (Connection connection = DriverManager.getConnection(url, username, password)) {
                 String selectQuery = "SELECT DISTINCT operation_no, workstation_no_first, workstation_no_second, workstation_no_third FROM dev.tbl_product_tree";
                 try (PreparedStatement stmt = connection.prepareStatement(selectQuery)) {
