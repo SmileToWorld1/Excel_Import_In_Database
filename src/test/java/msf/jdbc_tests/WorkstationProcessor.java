@@ -106,7 +106,8 @@ public class WorkstationProcessor {
 
     private static int getOperationId(Connection connection, String operationNo, int plantId) throws SQLException {
         int operationId = -1;
-        String selectQuery = "SELECT DISTINCT operation_id FROM das_new.tbl_operations WHERE TRIM(operation_no) = ? AND plant_id = ? AND OPERATION_STATUS<>'DELETED' LIMIT 1";
+        String selectQuery = "SELECT DISTINCT operation_id FROM das_new.tbl_operations WHERE TRIM(operation_no) = ? " +
+                "AND plant_id = ? AND OPERATION_STATUS<>'DELETED' LIMIT 1";
 
         // Sorgu başlatmadan önce loglama
         logger.info("Getting operation ID for operation number: {}, plant ID: {}", operationNo, plantId);
