@@ -2,3 +2,4 @@
 /target/
 *.iml
 /configuration.properties
+/src/test/java/msf/excels/

@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static msf.utilities.DBUtils.*;
@@ -23,10 +24,12 @@ public class ExcelToDatabaseImporter {
         // get Excel file path and db table name
         String excelFilePath = ConfigurationReader.get("excelFilePath");
         String dbTableName = ConfigurationReader.get("dbTableName");
-
+        String url = ConfigurationReader.get("db.url.rodex");
+        String username = ConfigurationReader.get("db.username.rodex");
+        String password = ConfigurationReader.get("db.password.rodex");
 
         // Create a connection with ready credentials
-        Connection connection = DBUtils.createConnection();
+        Connection connection = DBUtils.createConnection(url, username, password);
 
         Workbook workbook = new XSSFWorkbook(new FileInputStream(excelFilePath));
         Sheet sheet = workbook.getSheetAt(0);
@@ -63,7 +66,7 @@ public class ExcelToDatabaseImporter {
         preparedStatement.executeBatch();
         System.out.println("Excel data imported to database successfully!");
 
-        // If you don't want to null values in db, run this method
+     /*   // If you don't want to null values in db, run this method
         setEmptyCellValuesToNull(connection, dbTableName);
 
         // please set column names what you want to update
@@ -73,7 +76,9 @@ public class ExcelToDatabaseImporter {
         columnNamesToUpdate.add("workstation_capacity_min");
         columnNamesToUpdate.add("workstation_capacity_max");
         columnNamesToUpdate.add("equipment_quantity");
-        columnNamesToUpdate.add("workstation_no_outsource");
+        columnNamesToUpdate.add("workstation_no_outsource");*/
+
+        List<String> columnNamesToUpdate = Arrays.asList(columnNames);
 
         // If you want to remove '.0' chars from cells, run this method
         updateColumnValues(connection, dbTableName, columnNamesToUpdate);
